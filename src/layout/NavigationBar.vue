@@ -1,10 +1,10 @@
 <template>
 
-  <v-toolbar app>
+  <v-toolbar color="primary" app>
     <v-spacer></v-spacer>
-    <v-toolbar-side-icon @click.prevent="toolbar = !toolbar">
+    <v-toolbar-side-icon @click.prevent="toolbar = true">
       <v-icon>
-        more_vert
+        fas fa-sliders-h
       </v-icon>
     </v-toolbar-side-icon>
   </v-toolbar>

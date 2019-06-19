@@ -1,6 +1,6 @@
 <template>
 
-  <v-app>
+  <v-app dark>
     <Menu/>
     <NavigationBar/>
     <v-content>
