@@ -1,3 +1,4 @@
 export default {
-  toolbar: false
+  toolbar: false,
+  lang: "en"
 };

@@ -1,7 +1,9 @@
 export const actions = {};
 export const getters = {
-  toolbar: "TOOLBAR"
+  toolbar: "TOOLBAR",
+  lang: "LANGUAGE"
 };
 export const mutations = {
-  toggleToolbar: "TOGGLE_TOOLBAR"
+  toggleToolbar: "TOGGLE_TOOLBAR",
+  changeLang: "CHANGE_LANGUAGE"
 };

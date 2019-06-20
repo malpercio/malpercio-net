@@ -3,16 +3,16 @@ import Vue from "vue";
 
 class AmplifyPlugin {
   static install(Vue, options) {
-    Vue.Amplify = AmplifyModules;
+    Vue.prototype.Amplify = AmplifyModules;
     Amplify.configure(options);
   }
 }
 
 const options = {
   Auth: {
-    region: process.env.AWS_REGION,
-    userPoolId: process.env.AWS_USER_POOL_ID,
-    userPoolWebClientId: process.env.USER_POOL_WEB_CLIENT_ID
+    region: process.env.VUE_APP_AWS_REGION,
+    userPoolId: process.env.VUE_APP_AWS_USER_POOL_ID,
+    userPoolWebClientId: process.env.VUE_APP_USER_POOL_WEB_CLIENT_ID
   }
 };
 

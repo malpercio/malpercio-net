@@ -1,25 +1,24 @@
 <template>
-
   <v-app dark>
-    <Menu/>
-    <NavigationBar/>
+    <Menu />
+    <NavigationBar />
     <v-content>
-      <v-container fluid>
+      <v-container fluid fill-height justify-center>
         <router-view></router-view>
       </v-container>
     </v-content>
-    <Footer/>
+    <Footer />
   </v-app>
-
 </template>
 
 <script>
+import { NavigationBar, Menu, Footer } from "@/layout";
 
-  import { NavigationBar, Menu, Footer } from '@/layout'
-
-  export default {
-    name: "App",
-    components: { NavigationBar, Menu, Footer }
+export default {
+  name: "App",
+  components: { NavigationBar, Menu, Footer },
+  mounted() {
+    this.$router.push({ name: "login" });
   }
-
+};
 </script>
