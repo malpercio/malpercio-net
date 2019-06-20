@@ -47,7 +47,7 @@ export default {
   methods: {
     async signIn() {
       const { Auth } = this.Amplify;
-      await Auth.signIn(this.username, this.password)
+      const cognitoCall = Auth.signIn(this.username, this.password)
         .then(user => {
           if (user.challengeName == "NEW_PASSWORD_REQUIRED") {
             return Auth.completeNewPassword(user, this.password);
@@ -58,6 +58,7 @@ export default {
         )
         .then(() => this.$router.push({ name: "admin" }))
         .catch(() => null);
+      return this.$loading(cognitoCall);
     }
   }
 };
