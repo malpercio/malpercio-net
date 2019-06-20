@@ -1,5 +1,6 @@
 export default {
   values: {
-    logIn: "Enter"
+    logIn: "Enter",
+    logout: "Logout"
   }
 };

@@ -1,10 +1,11 @@
 import en from "./en";
+import es from "./es";
 import none from "./none";
 import __ from "roddeh-i18n";
 import Vue from "vue";
 import global from "@/modules";
 
-const locales = { en, none };
+const locales = { en, es, none };
 
 class i18n {
   static install(VueClass, locales) {
@@ -15,6 +16,7 @@ class i18n {
       }
       return __(`${lang}.${message}`);
     };
+    VueClass.prototype.$locales = locales;
   }
 
   static configure(locales) {
