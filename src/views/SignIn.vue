@@ -32,6 +32,7 @@
 
 <script>
 import { session } from "@/modules";
+import { fire } from "@/helpers";
 export default {
   name: "SignIn",
   data() {
@@ -57,7 +58,7 @@ export default {
           this.$store.commit(session.types.mutations.isLoggedIn, true)
         )
         .then(() => this.$router.push({ name: "admin" }))
-        .catch(() => null);
+        .catch(fire);
       return this.$loading(cognitoCall);
     }
   }
