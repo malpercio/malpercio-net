@@ -1,6 +1,6 @@
 <template>
   <v-layout align-center justify-center fill-height>
-    <v-flex xs1 md3>
+    <v-flex xs12 md3>
       <v-form v-model="valid">
         <v-text-field
           v-model="username"

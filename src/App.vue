@@ -16,9 +16,6 @@ import { NavigationBar, Menu, Footer } from "@/layout";
 
 export default {
   name: "App",
-  components: { NavigationBar, Menu, Footer },
-  mounted() {
-    this.$router.push({ name: "login" });
-  }
+  components: { NavigationBar, Menu, Footer }
 };
 </script>

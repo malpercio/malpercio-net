@@ -4,7 +4,7 @@ import {
   checkPolicies,
   forcedRedirection
 } from "./policies";
-import { SignIn, AdminHome } from "@/views";
+import { SignIn, AdminHome, Error } from "@/views";
 
 export default [
   {
@@ -23,5 +23,11 @@ export default [
     path: "/",
     name: "home",
     beforeEnter: checkPolicies([forcedRedirection("/admin")])
+  },
+  {
+    path: "*",
+    name: "fallback",
+    component: Error,
+    props: { code: 404, message: "errors.PageNotFound" }
   }
 ];

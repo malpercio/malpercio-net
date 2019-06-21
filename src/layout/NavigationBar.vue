@@ -71,7 +71,7 @@
 <style>
 
   .logo {
-    height: 60px;
+    height: 50px;
     margin-top: 5px;
   }
 
