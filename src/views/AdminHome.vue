@@ -1,13 +1,32 @@
 <template>
-  <v-layout align-center justify-center fill-height>
-    <v-flex xs1 md3>
-      HELLO
-    </v-flex>
-  </v-layout>
+  <CardView :cards="cards" />
 </template>
 
 <script>
+import { CardView } from "@/layout";
 export default {
-  name: "AdminHome"
+  name: "AdminHome",
+  data() {
+    return {
+      cards: [
+        {
+          src: require("@/assets/carlos-muza-84523-unsplash.jpg"),
+          title: "titles.counter",
+          description: "descriptions.counter",
+          href: "/counter",
+          height: "500px",
+          position: "top"
+        },
+        {
+          src: require("@/assets/med-badr-chemmaoui-630239-unsplash.jpg"),
+          title: "titles.account",
+          description: "descriptions.account",
+          href: "/account",
+          height: "500px",
+        },
+      ]
+    };
+  },
+  components: { CardView }
 };
 </script>

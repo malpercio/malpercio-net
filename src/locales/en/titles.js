@@ -1,3 +1,6 @@
 export default {
-  values: {}
+  values: {
+    counter: "Tabletop gaming tracker",
+    account: "Account"
+  }
 };

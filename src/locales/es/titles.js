@@ -1,3 +1,6 @@
 export default {
-  values: {}
+  values: {
+    counter: "Contador de juegos de mesa",
+    account: "Cuenta"
+  }
 };

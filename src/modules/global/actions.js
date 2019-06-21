@@ -6,12 +6,13 @@ export default {
     commit(mutations.snackbarMessage, "");
     commit(mutations.snackbarColor, "default");
   },
-  [actions.createSnackbar]({ commit, getters }, options) {
+  [actions.createSnackbar]({ commit, getters, dispatch }, options) {
     const message = typeof options === "string" ? options : options.message;
     const color =
       typeof options === "string"
         ? getters[globalGetters.snackbarColor]
         : options.color;
+    dispatch(actions.deleteSnackbar);
     commit(mutations.snackbarColor, color);
     commit(mutations.snackbarMessage, message);
     commit(mutations.toggleSnackbar, true);

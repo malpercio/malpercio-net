@@ -3,8 +3,8 @@
     <v-spacer />
     <v-btn
       v-for="icon in icons"
-      large
-      icon
+      flat
+      tile
       :key="icon.name"
       :href="icon.href"
       target="_blank"
