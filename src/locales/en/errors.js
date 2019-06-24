@@ -12,6 +12,7 @@ export default {
     TooManyFailedAttemptsException: "Limit exceeded. Please, try again later.",
     TooManyRequestsException: "Limit exceeded. Please, try again later.",
     Unknown: "Something went wrong!",
-    PageNotFound: "The page you requested doesn't exist"
+    PageNotFound: "The page you requested doesn't exist",
+    PageInMaintenance: "The page you requested is under development"
   }
 };

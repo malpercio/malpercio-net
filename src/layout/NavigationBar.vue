@@ -12,6 +12,9 @@
       <v-btn flat @click.prevent="logout" v-if="isLoggedIn"
         >{{ __("buttons.logout") }}
       </v-btn>
+      <v-btn flat @click.prevent="logout" v-else-if="$route.name !== 'login'"
+        >{{ __("buttons.login") }}
+      </v-btn>
       <v-btn flat @click.prevent="toggleLang">{{ lang }}</v-btn>
     </v-toolbar-items>
     <v-toolbar-side-icon
@@ -34,7 +37,6 @@ import { session } from "@/modules";
 import logo from "@/assets/logo.svg";
 
 const { getters, mutations } = global.types;
-
 export default {
   name: "NavigationBar",
   data() {

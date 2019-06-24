@@ -1,10 +1,5 @@
-import {
-  isLoggedIn,
-  isNotLoggedIn,
-  checkPolicies,
-  forcedRedirection
-} from "./policies";
-import { SignIn, AdminHome, Error } from "@/views";
+import { isLoggedIn, isNotLoggedIn, checkPolicies } from "./policies";
+import { SignIn, AdminHome, Error, Home, Timer } from "@/views";
 
 export default [
   {
@@ -22,7 +17,18 @@ export default [
   {
     path: "/",
     name: "home",
-    beforeEnter: checkPolicies([forcedRedirection("/admin")])
+    component: Home
+  },
+  {
+    path: "/timer",
+    name: "timer",
+    component: Timer
+  },
+  {
+    path: "/one-night",
+    name: "oneNight",
+    component: Error,
+    props: { code: 404, message: "errors.PageInMaintenance" }
   },
   {
     path: "*",

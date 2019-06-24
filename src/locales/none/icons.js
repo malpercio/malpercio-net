@@ -5,6 +5,9 @@ export default {
     settings: "fas fa-sliders-h",
     eye: "fas fa-eye",
     closedEye: "fas fa-eye-slash",
-    user: "fas fa-user"
+    user: "fas fa-user",
+    pause: "fas fa-pause",
+    play: "fas fa-play",
+    stop: "fas fa-stop"
   }
 };

@@ -12,6 +12,7 @@ export default {
     TooManyFailedAttemptsException: "Límite excedido. Intenta más tarde",
     TooManyRequestsException: "Límite excedido. Intenta más tarde",
     Unknown: "¡Algo salió terriblemente mal!",
-    PageNotFound: "La página solicitada no existe"
+    PageNotFound: "La página solicitada no existe",
+    PageInMaintenance: "La página solicitada está en desarrollo"
   }
 };

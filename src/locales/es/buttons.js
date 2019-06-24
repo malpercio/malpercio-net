@@ -1,7 +1,8 @@
 export default {
   values: {
-    logIn: "Entrar",
+    enter: "Entrar",
     logout: "Salir",
+    login: "Iniciar sesión",
     back: "Atrás",
     closeSnackbar: "Cerrar"
   }

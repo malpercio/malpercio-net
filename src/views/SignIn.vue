@@ -23,7 +23,7 @@
           required
         ></v-text-field>
         <v-btn :disabled="!valid" type="submit" @click.prevent="signIn">
-          {{ __("buttons.logIn") }}
+          {{ __("buttons.enter") }}
         </v-btn>
       </v-form>
     </v-flex>
