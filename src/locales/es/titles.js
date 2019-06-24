@@ -3,6 +3,10 @@ export default {
     counter: "Contador de juegos de mesa",
     account: "Cuenta",
     oneNight: "Juegos One Night",
-    timer: "Temporizador"
+    timer: "Temporizador",
+    start: "Comienza",
+    apps: "Menú",
+    adminHome: "Admin",
+    home: "Principal"
   }
 };

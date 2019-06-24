@@ -8,6 +8,8 @@ export default {
     user: "fas fa-user",
     pause: "fas fa-pause",
     play: "fas fa-play",
-    stop: "fas fa-stop"
+    stop: "fas fa-stop",
+    admin: "fas fa-user-cog",
+    home: "fas fa-home"
   }
 };

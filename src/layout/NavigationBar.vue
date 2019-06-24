@@ -12,7 +12,10 @@
       <v-btn flat @click.prevent="logout" v-if="isLoggedIn"
         >{{ __("buttons.logout") }}
       </v-btn>
-      <v-btn flat @click.prevent="logout" v-else-if="$route.name !== 'login'"
+      <v-btn
+        flat
+        @click.prevent="$router.push({ name: 'login' })"
+        v-else-if="$route.name !== 'login'"
         >{{ __("buttons.login") }}
       </v-btn>
       <v-btn flat @click.prevent="toggleLang">{{ lang }}</v-btn>
@@ -60,7 +63,7 @@ export default {
         .then(() =>
           this.$store.commit(session.types.mutations.isLoggedIn, false)
         )
-        .then(() => this.$router.push({ name: "login" }))
+        .then(() => this.$router.push({ name: "home" }))
         .catch(fire);
     },
     toggleLang() {

@@ -14,7 +14,7 @@ export default {
           title: "titles.counter",
           description: "descriptions.counter",
           href: "/counter",
-          height: "500px",
+          height: "400px",
           position: "top"
         },
         {
@@ -22,7 +22,7 @@ export default {
           title: "titles.account",
           description: "descriptions.account",
           href: "/account",
-          height: "500px"
+          height: "400px"
         }
       ]
     };

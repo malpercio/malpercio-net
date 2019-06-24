@@ -3,6 +3,10 @@ export default {
     counter: "Tabletop gaming tracker",
     account: "Account",
     oneNight: "One Night Games",
-    timer: "Timer"
+    timer: "Timer",
+    start: "Start",
+    apps: "Menu",
+    adminHome: "Admin",
+    home: "Home"
   }
 };
