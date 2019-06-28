@@ -1,5 +1,5 @@
 import { isLoggedIn, isNotLoggedIn, checkPolicies } from "./policies";
-import { SignIn, AdminHome, Error, Home, Timer } from "@/views";
+import { SignIn, AdminHome, Error, Home, PublicTimer } from "@/views";
 
 export default [
   {
@@ -22,7 +22,7 @@ export default [
   {
     path: "/timer",
     name: "timer",
-    component: Timer
+    component: PublicTimer
   },
   {
     path: "/one-night",
