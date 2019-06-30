@@ -2,9 +2,20 @@
   <v-container fluid>
     <v-layout>
       <v-flex text-xs-left>
-        <span :class="{'display-3':$vuetify.breakpoint.smAndUp, 'display-1':$vuetify.breakpoint.xs }" v-text="remainingTimeFormatted" v-show="!countdown"></span>
         <span
-          :class="{'warning--text': true, 'display-3':$vuetify.breakpoint.smAndUp, 'display-1':$vuetify.breakpoint.smAndDown }"
+          :class="{
+            'display-3': $vuetify.breakpoint.smAndUp,
+            'display-1': $vuetify.breakpoint.xs
+          }"
+          v-text="remainingTimeFormatted"
+          v-show="!countdown"
+        ></span>
+        <span
+          :class="{
+            'warning--text': true,
+            'display-3': $vuetify.breakpoint.smAndUp,
+            'display-1': $vuetify.breakpoint.smAndDown
+          }"
           v-text="countdown"
           v-show="countdown"
         ></span>
@@ -12,23 +23,25 @@
       <v-flex text-xs-right>
         <v-btn
           flat
-          :size="$vuetify.breakpoint.smAndUp? '36px': '16px'"
+          :size="$vuetify.breakpoint.smAndUp ? '36px' : '16px'"
           color="secondary"
           :disabled="!remainingTime || freeze"
           @click.prevent="toggle"
         >
-          <v-icon :size="$vuetify.breakpoint.smAndUp? '36px': '16px'"
+          <v-icon :size="$vuetify.breakpoint.smAndUp ? '36px' : '16px'"
             >{{ timer ? __("icons.pause", "none") : __("icons.play", "none") }}
           </v-icon>
         </v-btn>
         <v-btn
           flat
-          :size="$vuetify.breakpoint.smAndUp? '36px': '16px'"
+          :size="$vuetify.breakpoint.smAndUp ? '36px' : '16px'"
           color="error"
           :disabled="stopped || freeze"
           @click.prevent="stop"
         >
-          <v-icon :size="$vuetify.breakpoint.smAndUp? '36px': '16px'">{{ __("icons.stop", "none") }}</v-icon>
+          <v-icon :size="$vuetify.breakpoint.smAndUp ? '36px' : '16px'">{{
+            __("icons.stop", "none")
+          }}</v-icon>
         </v-btn>
       </v-flex>
     </v-layout>
@@ -58,14 +71,17 @@
 </template>
 
 <script>
-import Pizzicato from 'pizzicato';
+import Pizzicato from "pizzicato";
+
+const defaultTracks = [{ name: "Conquest 8 Bit", id: "loop" },{ name: "Amen (Organ)", id: "amen" }];
+
 export default {
   name: "Timer",
   model: {
     prop: "value",
     event: "changeRemainingTime"
   },
-  props:{
+  props: {
     value: {
       type: Number,
       default: 0
@@ -79,13 +95,14 @@ export default {
       remainingTimeFormatted: "00:00",
       countdown: false,
       freeze: false,
-      song: "originalRags",
+      sign: new Pizzicato.Sound(require(`@/assets/timer_music/airhorn.wav`)),
+      song: "loop",
       playing: null,
       catalogue: {},
       songNames: [
         {
           text: "None",
-          value: "none",
+          value: "none"
         }
       ]
     };
@@ -100,12 +117,12 @@ export default {
     running() {
       return this.remainingTime && this.timer;
     },
-    remainingTime:{
-      get(){
+    remainingTime: {
+      get() {
         return this.value;
       },
-      set(value){
-        this.$emit("changeRemainingTime", value)
+      set(value) {
+        this.$emit("changeRemainingTime", value);
       }
     }
   },
@@ -113,7 +130,7 @@ export default {
     play() {
       if (this.catalogue[this.song]) {
         this.playing = this.catalogue[this.song];
-        this.playing.play();
+        this.playing.play(2);
       }
       this.timer = setInterval(this.clock, 1000);
     },
@@ -128,6 +145,7 @@ export default {
       this.freeze = true;
       const interval = setInterval(() => {
         if (countdown == 0) {
+          this.sign.play();
           this.countdown = this.__("titles.start");
           this.play();
           this.freeze = false;
@@ -150,6 +168,7 @@ export default {
     clock() {
       this.remainingTime -= 1000;
       if (this.remainingTime <= 0) {
+        this.sign.play();
         this.stop();
       }
     },
@@ -158,12 +177,42 @@ export default {
       this.pause();
       this.remainingTime = 0;
     },
-    async getTrack(id){
+    async getTrack(id) {
       return new Promise(resolve => {
-        const sound = new Pizzicato.Sound(`https://api.jamendo.com/v3.0/tracks/file?client_id=3f977b40&id=${id}`, function() {
-    resolve(sound);
-});
+        const sound = new Pizzicato.Sound(
+          {
+            source: "file",
+            options: {
+              loop: true,
+              path: require(`@/assets/timer_music/${id}.wav`)
+            }
+          },
+          function() {
+            resolve(sound);
+          }
+        );
       });
+    },
+    async getTracks(songListing) {
+      const songs = await Promise.all(
+        songListing.map(({ id }) => this.getTrack(id))
+      );
+      for (let i in songs) {
+        songListing[i].file = songs[i];
+      }
+      this.catalogue = songListing.reduce((obj, song) => {
+        obj[song.id] = song.file;
+        return obj;
+      }, {});
+      this.songNames = songListing.map(song => ({
+        text: song.name,
+        value: song.id
+      }));
+      this.songNames.push({
+        text: "None",
+        value: "none"
+      });
+      this.song = this.songNames[0].value;
     }
   },
   watch: {
@@ -181,31 +230,9 @@ export default {
   destroyed() {
     this.playing && this.playing.stop();
   },
-  async created(){
-    const songs = Promise.all([this.getTrack("1518929"),
-this.getTrack("1560438"),
-this.getTrack("1133758"),])
-.then(songs => {
-  this.catalogue = {
-    originalRags: songs[0],
-    maybeItWasTrue: songs[1],
-    sonataSatanica: songs[2],
-  };
-  this.songNames.push({
-    text: "Original Rags",
-    value: "originalRags"
-  })
-  this.songNames.push({
-    text: "Maybe it was true",
-    value: "maybeItWasTrue"
-  })
-  this.songNames.push({
-    text: "Sonata Satanica",
-    value: "sonataSatanica"
-  })
-})
-    this.$loading(songs)
-
+  async created() {
+    const songs = this.getTracks(defaultTracks);
+    this.$loading(songs);
   }
 };
 </script>

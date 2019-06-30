@@ -1,5 +1,5 @@
 <template>
-  <Timer  v-model="remainingTime"></Timer>
+  <Timer v-model="remainingTime"></Timer>
 </template>
 
 <script>
@@ -7,9 +7,9 @@ import { Timer } from "@/components";
 
 export default {
   name: "PublicTimer",
-  components: {Timer},
+  components: { Timer },
   data() {
-    return {remainingTime: 0}
-  },
+    return { remainingTime: 0 };
+  }
 };
 </script>
