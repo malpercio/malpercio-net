@@ -7,6 +7,7 @@ export default {
     start: "Comienza",
     apps: "Menú",
     adminHome: "Admin",
-    home: "Principal"
+    home: "Principal",
+    none: "Ninguno"
   }
 };

@@ -73,10 +73,14 @@
 <script>
 import Pizzicato from "pizzicato";
 
-const defaultTracks = [{ name: "Conquest 8 Bit", id: "loop" },{ name: "Amen (Organ)", id: "amen" }];
+const defaultTracks = [
+  { name: "Conquest 8 Bit", id: "loop" },
+  { name: "Amen (Organ)", id: "amen" },
+  { name: "Dark Bells", id: "dark-bells" }
+];
 
 export default {
-  name: "Timer",
+  name: "Main",
   model: {
     prop: "value",
     event: "changeRemainingTime"
@@ -99,12 +103,7 @@ export default {
       song: "loop",
       playing: null,
       catalogue: {},
-      songNames: [
-        {
-          text: "None",
-          value: "none"
-        }
-      ]
+      songNames: []
     };
   },
   computed: {
