@@ -1,6 +1,6 @@
 <template>
   <v-flex>
-    <v-slider v-model="remainingTime" min="0" :readonly="readonly" max="600000">
+    <v-slider v-model="remainingTime" min="0" :readonly="readonly" :max="max">
     </v-slider>
   </v-flex>
 </template>
@@ -23,7 +23,7 @@ export default {
     }
   },
   data() {
-    return {};
+    return { max: 600000 };
   },
   computed: {
     remainingTime: {
@@ -32,6 +32,15 @@ export default {
       },
       set(value) {
         this.$emit("changeRemainingTime", value);
+      }
+    }
+  },
+  watch: {
+    remainingTime(newValue) {
+      if (newValue >= this.max) {
+        this.max *= 1.5;
+      } else if (newValue <= 600000) {
+        this.max = 600000;
       }
     }
   }
