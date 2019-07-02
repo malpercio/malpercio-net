@@ -1,14 +1,24 @@
 <template>
-  <v-flex xs12 text-xs-center>
-    <v-btn
-      v-for="button in buttons"
-      :key="button.value"
-      medium
-      @click.prevent="add(button.value)"
+  <v-layout>
+    <v-flex
+      xs12
+      text-xs-center
+      v-for="(buttons, index) in buttonList"
+      :key="index"
     >
-      {{ __(button.label) }}
-    </v-btn>
-  </v-flex>
+      <v-btn
+        medium
+        round
+        :class="{ primary: button.value > 0, error: button.value < 0 }"
+        @click.prevent="add(button.value)"
+        v-for="(button, index) in buttons"
+        :key="index"
+      >
+        {{ __(button.label) }}
+      </v-btn>
+      <v-spacer />
+    </v-flex>
+  </v-layout>
 </template>
 <script>
 export default {
@@ -19,39 +29,47 @@ export default {
   },
   data() {
     return {
-      buttons: [
-        {
-          label: "buttons.plusOneSecond",
-          value: 1000
-        },
-        {
-          label: "buttons.minusOneSecond",
-          value: -1000
-        },
-        {
-          label: "buttons.plusFiveSeconds",
-          value: 5000
-        },
-        {
-          label: "buttons.minusFiveSeconds",
-          value: -5000
-        },
-        {
-          label: "buttons.plusOneMinute",
-          value: 60000
-        },
-        {
-          label: "buttons.minusOneMinute",
-          value: -60000
-        },
-        {
-          label: "buttons.plusFiveMinutes",
-          value: 300000
-        },
-        {
-          label: "buttons.minusFiveMinutes",
-          value: -300000
-        }
+      buttonList: [
+        [
+          {
+            label: "buttons.plusOneSecond",
+            value: 1000
+          },
+          {
+            label: "buttons.minusOneSecond",
+            value: -1000
+          }
+        ],
+        [
+          {
+            label: "buttons.plusFiveSeconds",
+            value: 5000
+          },
+          {
+            label: "buttons.minusFiveSeconds",
+            value: -5000
+          }
+        ],
+        [
+          {
+            label: "buttons.plusOneMinute",
+            value: 60000
+          },
+          {
+            label: "buttons.minusOneMinute",
+            value: -60000
+          }
+        ],
+        [
+          {
+            label: "buttons.plusFiveMinutes",
+            value: 300000
+          },
+          {
+            label: "buttons.minusFiveMinutes",
+            value: -300000
+          }
+        ]
       ]
     };
   },
