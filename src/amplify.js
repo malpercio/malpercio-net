@@ -1,9 +1,11 @@
-import Amplify, * as AmplifyModules from "aws-amplify";
+import Amplify from "@aws-amplify/core";
+import Auth from "@aws-amplify/auth";
 import Vue from "vue";
 
 class AmplifyPlugin {
   static install(Vue, options) {
-    Vue.prototype.Amplify = AmplifyModules;
+    Vue.prototype.Amplify = { Auth };
+    Vue.Amplify = { Auth };
     Amplify.configure(options);
   }
 }

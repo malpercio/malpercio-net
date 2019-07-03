@@ -8,6 +8,8 @@ export default {
     apps: "Menu",
     adminHome: "Admin",
     home: "Home",
-    none: "None"
+    none: "None",
+    records: "All Records",
+    addRecord: "Add new record"
   }
 };

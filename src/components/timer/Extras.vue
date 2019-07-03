@@ -1,11 +1,6 @@
 <template>
-  <v-layout>
-    <v-flex
-      xs12
-      text-xs-center
-      v-for="(buttons, index) in buttonList"
-      :key="index"
-    >
+  <v-layout wrap>
+    <v-flex text-xs-center v-for="(buttons, index) in buttonList" :key="index">
       <v-btn
         medium
         round

@@ -10,6 +10,7 @@ export default {
     play: "fas fa-play",
     stop: "fas fa-stop",
     admin: "fas fa-user-cog",
-    home: "fas fa-home"
+    home: "fas fa-home",
+    plus: "fas fa-plus"
   }
 };

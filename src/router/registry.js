@@ -1,5 +1,14 @@
 import { isLoggedIn, isNotLoggedIn, checkPolicies } from "./policies";
-import { SignIn, AdminHome, Error, Home, PublicTimer } from "@/views";
+import {
+  SignIn,
+  AdminHome,
+  Error,
+  Home,
+  PublicTimer,
+  TabletopGaming,
+  Wingspan,
+  Records
+} from "@/views";
 
 export default [
   {
@@ -23,6 +32,24 @@ export default [
     path: "/timer",
     name: "timer",
     component: PublicTimer
+  },
+  {
+    path: "/tabletop-gaming/records",
+    name: "records",
+    component: Records,
+    beforeEnter: checkPolicies([isLoggedIn])
+  },
+  {
+    path: "/tabletop-gaming/wingspan",
+    name: "wingspan",
+    component: Wingspan,
+    beforeEnter: checkPolicies([isLoggedIn])
+  },
+  {
+    path: "/tabletop-gaming",
+    name: "tabletopGaming",
+    component: TabletopGaming,
+    beforeEnter: checkPolicies([isLoggedIn])
   },
   {
     path: "/one-night",

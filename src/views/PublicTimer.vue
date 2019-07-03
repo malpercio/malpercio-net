@@ -1,7 +1,9 @@
 <template>
-  <v-container>
-    <Timer v-model="remainingTime"></Timer>
-    <Extras v-model="remainingTime"></Extras>
+  <v-container fill-height>
+    <v-layout wrap align-center>
+      <Timer v-model="remainingTime"></Timer>
+      <Extras v-model="remainingTime"></Extras>
+    </v-layout>
   </v-container>
 </template>
 

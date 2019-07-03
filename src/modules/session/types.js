@@ -1,4 +1,6 @@
-export const actions = {};
+export const actions = {
+  getToken: "GET_JWT_TOKEN"
+};
 export const getters = {
   isLoggedIn: "IS_LOGGED_IN"
 };

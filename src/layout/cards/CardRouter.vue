@@ -3,7 +3,7 @@
     <v-hover>
       <v-card slot-scope="{ hover }" :class="`elevation-${hover ? 10 : 2}`">
         <v-img :height="height" :width="width" :src="src"> </v-img>
-        <v-container fluid>
+        <v-container>
           <v-layout fill-height>
             <v-flex xs12>
               <span class="headline">{{ title }}</span>

@@ -15,7 +15,7 @@
                 :position="card.position"
               >
               </v-img>
-              <v-container fluid>
+              <v-container>
                 <v-layout fill-height>
                   <v-flex xs12>
                     <span class="headline">{{ __(card.title) }}</span>

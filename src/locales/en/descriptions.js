@@ -4,6 +4,7 @@ export default {
     account: "Accesses and personal data configuration",
     oneNight:
       "Translated copy of the basic functionality of the Bézier Games app",
-    timer: "Simple tabletop gaming timer"
+    timer: "Simple tabletop gaming timer",
+    records: "Listing of all records saved after gameplay"
   }
 };

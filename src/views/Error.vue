@@ -6,7 +6,9 @@
       </v-flex>
     </v-layout>
     <v-layout align-center justify-center fill-height>
-      <v-flex xs12 md4 id="code" class="display-2 error--text">&lt; {{ code }} /&gt;</v-flex>
+      <v-flex xs12 md4 id="code" class="display-2 error--text"
+        >&lt; {{ code }} /&gt;</v-flex
+      >
     </v-layout>
     <v-layout align-center justify-center fill-height>
       <v-flex xs12 md4>
@@ -37,5 +39,4 @@ export default {
 };
 </script>
 
-<style lang="scss">
-</style>
+<style lang="scss"></style>

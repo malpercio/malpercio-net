@@ -13,7 +13,7 @@ export default {
           src: require("@/assets/carlos-muza-84523-unsplash.jpg"),
           title: "titles.counter",
           description: "descriptions.counter",
-          href: "/counter",
+          href: { name: "tabletopGaming" },
           height: "400px",
           position: "top"
         },

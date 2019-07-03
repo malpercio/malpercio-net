@@ -3,9 +3,7 @@
     <Menu />
     <NavigationBar />
     <v-content>
-      <v-container fluid fill-height justify-center>
-        <router-view></router-view>
-      </v-container>
+      <router-view></router-view>
       <Snackbar />
     </v-content>
     <Footer />

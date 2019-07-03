@@ -1,5 +1,5 @@
 <template>
-  <v-footer app height="auto" color="primary">
+  <v-footer app height="auto" color="primary" flat>
     <v-spacer />
     <v-btn
       v-for="icon in icons"
