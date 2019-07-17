@@ -3,7 +3,7 @@ import es from "./es";
 import none from "./none";
 import __ from "roddeh-i18n";
 import Vue from "vue";
-import global from "@/modules";
+import global from "@/store/modules";
 
 const locales = { en, es, none };
 

@@ -1,25 +1,23 @@
 <template>
-  <v-layout align-center>
-    <v-flex>
-      <v-layout>
-        <Face :time="remainingTime" :countdown="countdown" />
-        <Controls
-          v-model="controlStatus"
-          @play="startCountdown"
-          @pause="pause"
-          @stop="stop"
-        />
-      </v-layout>
+  <div>
+    <v-layout>
+      <Face :time="remainingTime" :countdown="countdown" />
+      <Controls
+        v-model="controlStatus"
+        @play="startCountdown"
+        @pause="pause"
+        @stop="stop"
+      />
+    </v-layout>
 
-      <v-layout>
-        <Slider :readonly="!!timer || freeze" v-model="remainingTime" />
-      </v-layout>
+    <v-layout>
+      <Slider :readonly="!!timer || freeze" v-model="remainingTime" />
+    </v-layout>
 
-      <v-layout justify-center>
-        <SongSelection v-model="player" :disabled="!stopped" />
-      </v-layout>
-    </v-flex>
-  </v-layout>
+    <v-layout justify-center>
+      <SongSelection v-model="player" :disabled="!stopped" />
+    </v-layout>
+  </div>
 </template>
 
 <script>

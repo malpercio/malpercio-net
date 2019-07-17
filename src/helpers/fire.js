@@ -1,5 +1,5 @@
 import store from "@/store";
-import global from "@/modules";
+import global from "@/store/modules";
 export default function(err) {
   const message =
     "errors." +

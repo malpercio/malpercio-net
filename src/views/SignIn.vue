@@ -31,7 +31,7 @@
 </template>
 
 <script>
-import { session } from "@/modules";
+import { session } from "@/store/modules";
 import { fire } from "@/helpers";
 export default {
   name: "SignIn",

@@ -1,9 +1,9 @@
 <template>
-  <v-toolbar flat color="primary">
+  <v-toolbar floating flat color="primary">
     <v-toolbar-title>{{ __("titles.records") }}</v-toolbar-title>
     <v-dialog v-model="shown" max-width="600px" persistent>
       <template v-slot:activator="{ on }">
-        <v-btn large icon color="secondary" v-on="on" absolute right>
+        <v-btn large icon v-on="on" absolute right>
           <v-icon>{{ __("icons.plus", "none") }}</v-icon>
         </v-btn>
       </template>
@@ -20,10 +20,7 @@
                 <v-text-field v-model="match" label="Match"></v-text-field>
               </v-flex>
               <v-flex xs6>
-                <v-text-field
-                  v-model="player"
-                  label="Player"
-                ></v-text-field>
+                <v-text-field v-model="player" label="Player"></v-text-field>
               </v-flex>
             </v-layout>
             <v-layout>
@@ -36,7 +33,7 @@
               </v-flex>
               <v-flex xs3>
                 <v-btn
-                  flat
+                  text
                   @click="
                     bonuses.push(parseInt(bonus));
                     bonus = '';
@@ -53,7 +50,7 @@
               </v-flex>
               <v-flex xs3>
                 <v-btn
-                  flat
+                  text
                   @click="
                     birds.push(parseInt(bird));
                     bird = '';
@@ -63,7 +60,7 @@
               </v-flex>
             </v-layout>
             <v-layout>
-              <v-flex xs3 v-for="round in [1, 2, 3, 4]">
+              <v-flex xs3 v-for="round in [1, 2, 3, 4]" :key="round">
                 <v-text-field
                   v-model="rounds[round - 1]"
                   :label="`Round ${round}`"
@@ -106,8 +103,8 @@
 
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn flat @click="close">Cancel</v-btn>
-          <v-btn flat @click="save">Save</v-btn>
+          <v-btn text @click="close">Cancel</v-btn>
+          <v-btn text @click="save">Save</v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
@@ -116,8 +113,7 @@
 
 <script>
 import capitalize from "lodash.capitalize";
-import { mutations, actions } from "@/modules/wingspan/types";
-import axios from "axios";
+import { actions } from "@/store/modules/wingspan/types";
 
 export default {
   model: {
@@ -133,18 +129,18 @@ export default {
   name: "NewRecordModal",
   data() {
     return {
-      bonus: '',
-      bird: '',
+      bonus: "",
+      bird: "",
       birds: [],
-      eggs:'',
-      rounds:['','','',''],
-      bonuses:[],
-      food:'',
-      cache:'',
-      tuckedCards:'',
-      player:'',
-      match:''
-        };
+      eggs: "",
+      rounds: ["", "", "", ""],
+      bonuses: [],
+      food: "",
+      cache: "",
+      tuckedCards: "",
+      player: "",
+      match: ""
+    };
   },
   computed: {
     shown: {
@@ -155,20 +151,20 @@ export default {
         this.$emit("toggleNewRecordModalVisibility", value);
       }
     },
-    item(){
-        return {
-          birds: this.birds,
-          bonuses: this.bonuses,
-          rounds: this.rounds.map(x => parseInt(x)),
-          eggs: parseInt(this.eggs),
-          food: parseInt(this.food),
-          cache: parseInt(this.cache),
-          tuckedCards: parseInt(this.tuckedCards),
-          player: this.player,
-          datetime: Date.now(),
-          match: this.match
-        };
-      },
+    item() {
+      return {
+        birds: this.birds,
+        bonuses: this.bonuses,
+        rounds: this.rounds.map(x => parseInt(x)),
+        eggs: parseInt(this.eggs),
+        food: parseInt(this.food),
+        cache: parseInt(this.cache),
+        tuckedCards: parseInt(this.tuckedCards),
+        player: this.player,
+        datetime: Date.now(),
+        match: this.match
+      };
+    }
   },
   methods: {
     close() {
@@ -177,23 +173,26 @@ export default {
     },
     capitalize,
     resetData() {
-      this.bonus= ''
-      this.bird= ''
-      this.eggs=''
-      this.rounds=['','','','']
-      this.food=''
-      this.cache=''
-      this.tuckedcards=''
-      this.player=''
-      this.match=''
+      this.bonus = "";
+      this.bird = "";
+      this.eggs = "";
+      this.rounds = ["", "", "", ""];
+      this.food = "";
+      this.cache = "";
+      this.tuckedcards = "";
+      this.player = "";
+      this.match = "";
     },
     resetModal() {
       this.resetData();
-      this.bonus = ''
-      this.bird = '';
+      this.bonus = "";
+      this.bird = "";
     },
     async save() {
-      const creation = this.$store.dispatch(actions.createWingspanRecord, this.item)
+      const creation = this.$store.dispatch(
+        actions.createWingspanRecord,
+        this.item
+      );
 
       return this.$loading(creation).then(() => this.close());
     }

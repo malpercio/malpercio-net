@@ -1,7 +1,7 @@
 <template>
   <v-snackbar top :color="snackbarColor" v-model="snackbar">
     {{ __(snackbarMessage) }}
-    <v-btn dark flat @click="deleteSnackbar">
+    <v-btn flat @click="deleteSnackbar">
       {{ __("buttons.closeSnackbar") }}
     </v-btn>
   </v-snackbar>
@@ -11,7 +11,7 @@
 import { mapComputed } from "@/helpers";
 import store from "@/store";
 import { mapActions } from "vuex";
-import global from "@/modules";
+import global from "@/store/modules";
 export default {
   name: "Snackbar",
   computed: {

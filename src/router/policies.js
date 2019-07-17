@@ -1,4 +1,4 @@
-import { session } from "@/modules";
+import { session } from "@/store/modules";
 import store from "@/store";
 
 export async function isLoggedIn() {

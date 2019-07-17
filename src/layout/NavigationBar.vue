@@ -1,5 +1,5 @@
 <template>
-  <v-toolbar color="primary" app flat>
+  <v-app-bar app flat class="primary">
     <v-toolbar-title>
       <router-link to="/">
         <img :src="logo" class="logo" />
@@ -9,34 +9,30 @@
     <v-progress-circular indeterminate v-show="loading"></v-progress-circular>
     <v-spacer />
     <v-toolbar-items>
-      <v-btn flat @click.prevent="logout" v-if="isLoggedIn"
+      <v-btn text @click.prevent="logout" v-if="isLoggedIn"
         >{{ __("buttons.logout") }}
       </v-btn>
       <v-btn
-        flat
+        text
         @click.prevent="$router.push({ name: 'login' })"
         v-else-if="$route.name !== 'login'"
         >{{ __("buttons.login") }}
       </v-btn>
-      <v-btn flat @click.prevent="toggleLang">{{ lang }}</v-btn>
+      <v-btn text @click.prevent="toggleLang">{{ lang }}</v-btn>
     </v-toolbar-items>
-    <v-toolbar-side-icon
-      large
-      @click.prevent="toolbar = true"
-      v-if="isLoggedIn"
-    >
-      <v-icon>
+    <v-app-bar-nav-icon @click.prevent="toolbar = true" v-if="isLoggedIn">
+      <v-icon icon>
         {{ __("icons.settings", "none") }}
       </v-icon>
-    </v-toolbar-side-icon>
-  </v-toolbar>
+    </v-app-bar-nav-icon>
+  </v-app-bar>
 </template>
 
 <script>
 import { mapComputed, fire } from "@/helpers";
-import global from "@/modules";
+import global from "@/store/modules";
 import store from "@/store";
-import { session } from "@/modules";
+import { session } from "@/store/modules";
 import logo from "@/assets/logo.svg";
 
 const { getters, mutations } = global.types;

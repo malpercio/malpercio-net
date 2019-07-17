@@ -3,7 +3,7 @@
     <v-toolbar-title>{{ __("titles.records") }}</v-toolbar-title>
     <v-dialog v-model="shown" max-width="600px" persistent>
       <template v-slot:activator="{ on }">
-        <v-btn large icon color="secondary" v-on="on" absolute right>
+        <v-btn large icon v-on="on" absolute right>
           <v-icon>{{ __("icons.plus", "none") }}</v-icon>
         </v-btn>
       </template>
@@ -69,8 +69,8 @@
 
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn flat @click="close">Cancel</v-btn>
-          <v-btn flat>Save</v-btn>
+          <v-btn text @click="close">Cancel</v-btn>
+          <v-btn text>Save</v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>

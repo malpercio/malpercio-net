@@ -3,7 +3,7 @@
     <v-flex text-xs-center v-for="(buttons, index) in buttonList" :key="index">
       <v-btn
         medium
-        round
+        rounded
         :class="{ primary: button.value > 0, error: button.value < 0 }"
         @click.prevent="add(button.value)"
         v-for="(button, index) in buttons"

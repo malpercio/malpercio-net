@@ -1,12 +1,12 @@
 <template>
-  <v-container id="errorContainer" text-xs-center>
+  <v-container text-xs-center>
     <v-layout align-center justify-center fill-height>
       <v-flex xs12 md4>
         <v-img :src="require('@/assets/logo.svg')" />
       </v-flex>
     </v-layout>
     <v-layout align-center justify-center fill-height>
-      <v-flex xs12 md4 id="code" class="display-2 error--text"
+      <v-flex xs12 md4 class="display-2 error--text"
         >&lt; {{ code }} /&gt;</v-flex
       >
     </v-layout>
@@ -38,5 +38,3 @@ export default {
   name: "Error"
 };
 </script>
-
-<style lang="scss"></style>

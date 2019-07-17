@@ -1,6 +1,6 @@
 <template>
-  <v-app dark>
-    <Menu />
+  <v-app>
+    <Menu> </Menu>
     <NavigationBar />
     <v-content>
       <router-view></router-view>

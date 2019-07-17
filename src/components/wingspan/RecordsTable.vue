@@ -2,39 +2,26 @@
   <v-data-table
     :items="items"
     :headers="headers"
-    hide-actions
+    hide-default-footer
     :no-results-text="__('errors.noData')"
     :no-data-text="__('errors.noData')"
     :loading="loading"
   >
-    <template v-slot:items="props">
-      <tr>
-        <td class="text-xs-center">{{ props.item.match }}</td>
-        <td class="text-xs-center">{{ props.item.player }}</td>
-        <td class="text-xs-center">
-          {{ props.item.birds.reduce((partial_sum, a) => partial_sum + a, 0) }}
-        </td>
-        <td class="text-xs-center">
-          {{
-            props.item.bonuses.reduce((partial_sum, a) => partial_sum + a, 0)
-          }}
-        </td>
-        <td class="text-xs-center">
-          {{ props.item.rounds.reduce((partial_sum, a) => partial_sum + a, 0) }}
-        </td>
-        <td class="text-xs-center">{{ props.item.eggs }}</td>
-        <td class="text-xs-center">{{ props.item.cache }}</td>
-        <td class="text-xs-center">{{ props.item.tuckedCards }}</td>
-        <td class="text-xs-center">{{ props.item.food }}</td>
-        <td class="text-xs-center">{{ props.item.score }}</td>
-      </tr>
-    </template>
+  <template v-slot:item.birds="{ item }">
+    {{item.birds.length? item.birds: '-'}}
+  </template>
+  <template v-slot:item.bonuses="{ item }">
+    {{item.bonuses.length? item.bonuses: '-'}}
+  </template>
+  <template v-slot:item.rounds="{ item }">
+    {{item.rounds}}
+  </template>
   </v-data-table>
 </template>
 
 <script>
-import { mapComputed, fire } from "@/helpers";
-import { actions, getters, mutations } from "@/modules/wingspan/types";
+import { mapComputed } from "@/helpers";
+import { actions, getters, mutations } from "@/store/modules/wingspan/types";
 import store from "@/store";
 const defaultHeaders = [
   {
@@ -87,20 +74,26 @@ export default {
     };
   },
   computed: {
-    ...mapComputed(store, "items", getters.wingspanRecords, actions.wingspanRecords),
+    ...mapComputed(
+      store,
+      "items",
+      getters.wingspanRecords,
+      actions.wingspanRecords
+    )
   },
   methods: {
     async refreshItems() {
       this.loading = true;
-      this.$loading(this.$store.dispatch(actions.getWingspanRecords))
-        .then(() => (this.loading = false));
+      this.$loading(this.$store.dispatch(actions.getWingspanRecords)).then(
+        () => (this.loading = false)
+      );
     }
   },
   async mounted() {
     this.refreshItems();
   },
-  destroyed(){
-    this.$store.commit(mutations.clearWingspanRecords)
+  destroyed() {
+    this.$store.commit(mutations.clearWingspanRecords);
   }
 };
 </script>

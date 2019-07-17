@@ -1,9 +1,9 @@
 <template>
-  <v-footer app height="auto" color="primary" flat>
+  <v-footer app class="primary">
     <v-spacer />
     <v-btn
       v-for="icon in icons"
-      flat
+      text
       tile
       :key="icon.name"
       :href="icon.href"

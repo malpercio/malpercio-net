@@ -1,7 +1,7 @@
 <template>
   <v-flex text-xs-right>
     <v-btn
-      flat
+      text
       :size="$vuetify.breakpoint.smAndUp ? '36px' : '16px'"
       color="secondary"
       :disabled="value.playDisabled"
@@ -14,7 +14,7 @@
       </v-icon>
     </v-btn>
     <v-btn
-      flat
+      text
       :size="$vuetify.breakpoint.smAndUp ? '36px' : '16px'"
       color="error"
       :disabled="value.stopDisabled"
